@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kiran Krishn Gunaseelan | Portfolio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Three.js CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+    <style>
+        /* Base styles */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0a0a;
+            color: #e0e0e0;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+
+        /* 3D Canvas Container */
+        #canvas-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: -1;
+            opacity: 0.5; /* Make it subtle */
+        }
+
+        #bg-canvas {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        /* Luxurious Text Gradient */
+        .text-gradient-gold {
+            background: -webkit-linear-gradient(120deg, #fde68a, #B8860B);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Glassmorphism Card Style */
+        .glass-card {
+            background: rgba(16, 16, 16, 0.6); /* Dark, semi-transparent bg */
+            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            background: rgba(16, 16, 16, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Skill Tag Style */
+        .skill-tag {
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            color: #D4AF37;
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            background: rgba(212, 175, 55, 0.2);
+            transform: scale(1.05);
+        }
+        
+        /* Contact Icon Hover */
+        .contact-icon:hover {
+            color: #D4AF37;
+            transform: scale(1.1);
+        }
+
+        /* Scroll-in Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            will-change: opacity, transform;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- 3D Background Canvas -->
+    <div id="canvas-container">
+        <canvas id="bg-canvas"></canvas>
+    </div>
+
+    <!-- Header / Navigation -->
+    <header class="fixed top-0 left-0 right-0 z-10 bg-black/30 backdrop-blur-md">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo/Name -->
+                <div class="flex-shrink-0">
+                    <a href="#" class="text-2xl font-bold text-gradient-gold">K.G</a>
+                </div>
+                <!-- Contact Links -->
+                <div class="flex items-center space-x-5">
+                    <a href="https://linkedin.com/in/kiran-krishn" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-amber-400 transition duration-300 contact-icon" aria-label="LinkedIn">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                    </a>
+                    <a href="mailto:kirankrishn.g@gmail.com" class="text-gray-300 hover:text-amber-400 transition duration-300 contact-icon" aria-label="Email">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                    </a>
+                    <a href="tel:+13136451630" class="text-gray-300 hover:text-amber-400 transition duration-300 contact-icon" aria-label="Phone">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="relative z-1">
+        
+        <!-- Hero Section -->
+        <section class="min-h-screen flex items-center justify-center text-center px-4 pt-20">
+            <div class="max-w-4xl">
+                <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight">
+                    <span class="block text-gradient-gold">Kiran Krishn Gunaseelan</span>
+                </h1>
+                <h2 class="mt-4 text-2xl sm:text-3xl lg:text-4xl font-medium text-gray-200">
+                    Strategic Data Scientist & DevOps Engineer
+                </h2>
+                <p class="mt-6 max-w-2xl mx-auto text-lg sm:text-xl text-gray-300">
+                    Converting complex challenges into scalable opportunities for business growth, with a focus on unlocking sustainable value.
+                </p>
+                <div class="mt-10 flex flex-wrap justify-center gap-4">
+                    <a href="#experience" class="inline-block bg-amber-500 text-black font-bold py-3 px-8 rounded-lg text-lg hover:bg-amber-400 transition duration-300 shadow-lg shadow-amber-500/20">
+                        View My Work
+                    </a>
+                    <a href="https://linkedin.com/in/kiran-krishn" target="_blank" rel="noopener noreferrer" class="inline-block bg-gray-700/50 text-white font-medium py-3 px-8 rounded-lg text-lg hover:bg-gray-600/70 transition duration-300 border border-gray-600">
+                        Connect on LinkedIn
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About / Professional Impact -->
+        <section id="about" class="py-20 sm:py-32">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="reveal glass-card rounded-2xl p-8 md:p-12 text-center">
+                    <h2 class="text-3xl font-bold tracking-tight sm:text-4xl text-gradient-gold">
+                        Professional Impact
+                    </h2>
+                    <p class="mt-6 text-lg md:text-xl leading-8 text-gray-200">
+                        I am a strategic and entrepreneurial professional with a record of delivering transformative solutions that create measurable impact. I specialize in converting complex challenges into scalable opportunities for business growth, with a dedicated focus on unlocking sustainable value and driving competitive advantage.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="py-20 sm:py-32">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl font-bold text-center sm:text-4xl mb-16 reveal text-gradient-gold">
+                    Business Impact Experience
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Futureworks Card -->
+                    <div class="reveal glass-card rounded-2xl p-8">
+                        <h3 class="text-2xl font-bold text-amber-400">DevOps</h3>
+                        <p class="text-lg font-medium text-gray-100 mt-1">Futureworks</p>
+                        <p class="text-sm text-gray-400 mt-1">India | Dec 2022 - Jul 2023</p>
+                        <ul class="mt-6 space-y-4 list-disc list-outside pl-5 text-gray-300">
+                            <li>Led automation and process transformation, boosting deployment efficiency by <strong>40%</strong> and cutting downtime by <strong>30%</strong>.</li>
+                            <li>Delivered cost-optimization strategies (AWS), reducing cloud infrastructure expenses by <strong>25%</strong>.</li>
+                            <li>Implemented standardized deployment practices (Terraform, Ansible), reducing manual configuration errors by <strong>80%</strong>.</li>
+                        </ul>
+                    </div>
+                    <!-- Minora Groups Card -->
+                    <div class="reveal glass-card rounded-2xl p-8">
+                        <h3 class="text-2xl font-bold text-amber-400">Business & Data Analyst</h3>
+                        <p class="text-lg font-medium text-gray-100 mt-1">Minora Groups</p>
+                        <p class="text-sm text-gray-400 mt-1">Singapore | Oct 2021 - Nov 2022</p>
+                        <ul class="mt-6 space-y-4 list-disc list-outside pl-5 text-gray-300">
+                            <li>Launched a new in-house clothing brand, achieving a <strong>130% profit margin</strong> through end-to-end management.</li>
+                            <li>Applied advanced sentiment analysis to customer feedback, improving product positioning and marketing effectiveness.</li>
+                            <li>Generated over <strong>250K SGD</strong> in additional profit through data-driven business strategies.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Projects Section -->
+        <section id="projects" class="py-20 sm:py-32">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl font-bold text-center sm:text-4xl mb-16 reveal text-gradient-gold">
+                    Key Projects
+                </h2>
+                <div class="space-y-8">
+                    <!-- Project 1 Card -->
+                    <div class="reveal glass-card rounded-2xl p-8">
+                        <h3 class="text-2xl font-bold text-amber-400">AI-Powered Business Outreach Solution</h3>
+                        <p class="mt-4 text-gray-300">
+                            Built an AI platform to automate and personalize recruiter outreach for brands, cutting preparation time by <strong>50%</strong> and improving response engagement by <strong>65%</strong>. Delivered scalable infrastructure with analytics and feedback-driven learning, improving personalization accuracy by <strong>40%</strong> in 3 months.
+                        </p>
+                    </div>
+                    <!-- Project 2 Card -->
+                    <div class="reveal glass-card rounded-2xl p-8">
+                        <h3 class="text-2xl font-bold text-amber-400">Strategic Supply Chain Analysis using AI Automation</h3>
+                        <p class="mt-4 text-gray-300">
+                            Built an AI-powered supply chain analysis framework using Quadratic spreadsheets to identify inefficiencies and optimize workflows. Implemented N8N workflow automation to streamline data integration and decision-making, improving visibility and reducing manual effort.
+                        </p>
+                    </div>
+                    <!-- Project 3 Card -->
+                    <div class="reveal glass-card rounded-2xl p-8">
+                        <h3 class="text-2xl font-bold text-amber-400">AI Fake News Detection</h3>
+                        <p class="mt-4 text-gray-300">
+                            Spearheaded an AI project using U.S. news datasets, guiding a team to design and implement models that classified articles as credible or misinformation with high accuracy, strengthening skills in leadership, analytics, and real-world problem-solving.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Skills Section -->
+        <section id="skills" class="py-20 sm:py-32">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl font-bold text-center sm:text-4xl mb-16 reveal text-gradient-gold">
+                    Skills & Expertise
+                </h2>
+                <div class="reveal glass-card rounded-2xl p-8 md:p-12">
+                    <!-- Business Skills -->
+                    <div>
+                        <h3 class="text-xl font-semibold text-amber-400 mb-4">Business Strategy & Management</h3>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="skill-tag font-medium py-2 px-4 rounded-full text-sm">Business Strategy</span>
+                            <span class="skill-tag font-medium py-2 px-4 rounded-full text-sm">Process Optimization</span>
+                            <span class="skill-tag font-medium py-2 px-4 rounded-full text-sm">Supply Chain Management</span>
+                            <span class="skill-tag font-medium py-2 px-4 rounded-full text-sm">Procurement Analytics</span>
+                            <span class="skill-tag font-medium py-2 px-4 rounded-full text-sm">Market Research</span>
+                            <span class="skill-tag font-medium py-2 px-4 rounded-full text-sm">Business Transformation</span>
+                            <span class="skill-tag font-medium py-2 px-4 rounded-full text-sm">Client Engagement</span>
+                            <span class="skill-tag font-medium py-2 px-4 rounded-full text-sm">Cost Optimization</span>
+                            <span class="skill-tag font-medium py-2 px-4 rounded-full text-sm">Stakeholder Management</span>
+                            <span class="skill-tag font-medium py-2 px-4 rounded-full text-sm">Project Management (Agile, JIRA)</span>
+                        </div>
+                    </div>
+                    <!-- Technical Skills -->
+                    <div class="mt-8">
+                        <h3 class="text-xl font-semibold text-amber-400 mb-4">Technical Tools & Platforms</h3>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="skill-tag font-medium py-2 px-4 rounded-full text-sm">Python</span>
+                            <span class="skill-tag font-medium py-2 px-4 rounded-full text-sm">SQL</span>
+                            <span class="skill-tag font-medium py-2 px-4 rounded-full text-sm">R</span>
+                            <span class="skill-tag font-medium py-2 px-4 rounded-full text-sm">AWS</span>
+                            <span class="skill-tag font-medium py-2 px-4 rounded-full text-sm">Power BI</span>
+                            <span class="skill-tag font-medium py-2 px-4 rounded-full text-sm">Tableau</span>
+                            <span class="skill-tag font-medium py-2 px-4 rounded-full text-sm">Terraform</span>
+                            <span class="skill-tag font-medium py-2 px-4 rounded-full text-sm">Ansible</span>
+                            <span class="skill-tag font-medium py-2 px-4 rounded-full text-sm">Excel</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education & Certificates -->
+        <section id="education" class="py-20 sm:py-32">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Education Card -->
+                    <div class="reveal glass-card rounded-2xl p-8">
+                        <h2 class="text-3xl font-bold text-gradient-gold mb-6">Education</h2>
+                        <h3 class="text-2xl font-bold text-amber-400">Master of Science in Data Science</h3>
+                        <p class="text-lg font-medium text-gray-100 mt-1">University of Michigan - Dearborn</p>
+                        <p class="text-sm text-gray-400 mt-1">Expected Dec 2025 | Dearborn, MI</p>
+                        <p class="mt-4 text-gray-300">Cumulative GPA: <strong>3.83/4.0</strong></p>
+                    </div>
+                    <!-- Certificates Card -->
+                    <div class="reveal glass-card rounded-2xl p-8">
+                        <h2 class="text-3xl font-bold text-gradient-gold mb-6">Certificates</h2>
+                        <ul class="space-y-4">
+                            <li class="flex items-center space-x-3">
+                                <svg class="w-6 h-6 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12 12 0 0012 21.694a12 12 0 008.618-15.65z"></path></svg>
+                                <span class="text-lg text-gray-200">Introduction to Digital Marketing (Google)</span>
+                            </li>
+                            <li class="flex items-center space-x-3">
+                                <svg class="w-6 h-6 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12 12 0 0012 21.694a12 12 0 008.618-15.65z"></path></svg>
+                                <span class="text-lg text-gray-200">AWS Business Intelligence and Analytics (Amazon)</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-16 mt-20" style="background: linear-gradient(to top, rgba(16, 16, 16, 0.8), transparent);">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl font-bold text-gradient-gold">Let's Connect</h2>
+            <p class="mt-4 text-lg text-gray-300 max-w-xl mx-auto">
+                I'm always open to discussing new opportunities, data-driven strategies, and how I can help drive your business forward.
+            </p>
+            <div class="mt-8 flex justify-center space-x-8">
+                <a href="https://linkedin.com/in/kiran-krishn" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-amber-400 transition duration-300 contact-icon" aria-label="LinkedIn">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                </a>
+                <a href="mailto:kirankrishn.g@gmail.com" class="text-gray-400 hover:text-amber-400 transition duration-300 contact-icon" aria-label="Email">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                </a>
+                <a href="tel:+13136451630" class="text-gray-400 hover:text-amber-400 transition duration-300 contact-icon" aria-label="Phone">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                </a>
+            </div>
+            <p class="mt-10 text-gray-500 text-sm">
+                &copy; 2025 Kiran Krishn Gunaseelan. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // --- 1. Three.js 3D Background ---
+            let scene, camera, renderer, mesh;
+            const canvas = document.getElementById('bg-canvas');
+            const container = document.getElementById('canvas-container');
+
+            function initThree() {
+                try {
+                    // Scene
+                    scene = new THREE.Scene();
+
+                    // Camera
+                    camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
+                    camera.position.z = 30;
+
+                    // Renderer
+                    renderer = new THREE.WebGLRenderer({
+                        canvas: canvas,
+                        alpha: true, // Transparent background
+                        antialias: true
+                    });
+                    renderer.setSize(container.clientWidth, container.clientHeight);
+                    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+                    // Geometry (A "fun" complex knot)
+                    const geometry = new THREE.TorusKnotGeometry(10, 2.5, 120, 12);
+
+                    // Material (Luxurious gold wireframe)
+                    const material = new THREE.MeshStandardMaterial({
+                        color: 0xD4AF37, // Gold color
+                        wireframe: true,
+                        metalness: 0.7,
+                        roughness: 0.3
+                    });
+
+                    // Mesh
+                    mesh = new THREE.Mesh(geometry, material);
+                    scene.add(mesh);
+
+                    // Lights
+                    const ambientLight = new THREE.AmbientLight(0xffffff, 0.2);
+                    scene.add(ambientLight);
+
+                    const pointLight = new THREE.PointLight(0xffffff, 1.2);
+                    pointLight.position.set(20, 20, 30);
+                    scene.add(pointLight);
+
+                    // Start animation loop
+                    animate();
+                } catch (error) {
+                    console.error("Failed to initialize 3D scene:", error);
+                    // Hide canvas if it fails
+                    if (container) container.style.display = 'none';
+                }
+            }
+
+            // Animation Loop
+            function animate() {
+                requestAnimationFrame(animate);
+                
+                // Subtle rotation
+                if (mesh) {
+                    mesh.rotation.x += 0.0005;
+                    mesh.rotation.y += 0.001;
+                }
+                
+                renderer.render(scene, camera);
+            }
+
+            // Handle Window Resize
+            function onWindowResize() {
+                if (camera && renderer && container) {
+                    camera.aspect = container.clientWidth / container.clientHeight;
+                    camera.updateProjectionMatrix();
+                    renderer.setSize(container.clientWidth, container.clientHeight);
+                    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+                }
+            }
+            window.addEventListener('resize', onWindowResize, false);
+
+            // Animate mesh rotation based on scroll
+            document.body.onscroll = () => {
+                if (mesh) {
+                    const t = document.body.scrollTop || document.documentElement.scrollTop;
+                    // Add a "fun" spin as user scrolls
+                    mesh.rotation.z = t * 0.0008;
+                    mesh.rotation.x = t * 0.0002;
+                }
+            }
+
+            // --- 2. Scroll-in-View Animations ---
+            const revealElements = document.querySelectorAll('.reveal');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        // Stop observing once it's visible
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1 // Trigger when 10% of the element is visible
+            });
+
+            revealElements.forEach(el => {
+                observer.observe(el);
+            });
+
+            // --- Start 3D Scene ---
+            initThree();
+
+        });
+    </script>
+
+</body>
+</html>
