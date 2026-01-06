@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kiran Krishn Gunaseelan | AI Engineer (New Grad) — BNSF Portfolio</title>
+  <title>Kiran Krishn Gunaseelan | BNSF | Tech (New Grad) Portfolio</title>
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -13,38 +13,112 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;800&display=swap" rel="stylesheet">
 
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            gold1: "#FDE68A",
+            gold2: "#D4AF37",
+            gold3: "#B8860B",
+            ink: "#0a0a0a",
+          },
+          boxShadow: {
+            glow: "0 0 0 1px rgba(255,255,255,0.06), 0 18px 60px rgba(0,0,0,0.55)",
+          }
+        }
+      }
+    }
+  </script>
+
   <style>
     body { font-family: 'Inter', sans-serif; }
+
+    /* Gradient text */
     .text-gold {
-      background: linear-gradient(120deg, #fde68a, #B8860B);
+      background: linear-gradient(120deg, #fde68a, #d4af37, #b8860b);
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
       color: transparent;
     }
+
+    /* Glass card */
     .card {
       background: rgba(17, 17, 17, 0.65);
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(12px);
       border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.03);
+      transition: transform 220ms ease, border-color 220ms ease, background 220ms ease;
     }
     .card:hover {
       border-color: rgba(255, 255, 255, 0.16);
-      transform: translateY(-2px);
-      transition: all 200ms ease;
+      transform: translateY(-3px);
+      background: rgba(17, 17, 17, 0.74);
+    }
+
+    /* Subtle animated glow blobs */
+    .blob {
+      filter: blur(50px);
+      opacity: 0.18;
+      animation: floaty 10s ease-in-out infinite;
+    }
+    .blob2 { animation-delay: -4s; }
+    @keyframes floaty {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(25px, -18px) scale(1.06); }
+    }
+
+    /* Soft grid */
+    .grid-bg {
+      background-image:
+        radial-gradient(circle at 25% 20%, rgba(212,175,55,0.22), transparent 35%),
+        radial-gradient(circle at 70% 70%, rgba(253,230,138,0.10), transparent 38%),
+        linear-gradient(to right, rgba(255,255,255,0.06) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.06) 1px, transparent 1px);
+      background-size: auto, auto, 44px 44px, 44px 44px;
+    }
+
+    /* Logo chip */
+    .logo-chip {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.10);
     }
   </style>
 </head>
 
-<body class="bg-[#0a0a0a] text-gray-100">
+<body class="bg-ink text-gray-100 overflow-x-hidden">
+  <!-- Background -->
+  <div class="fixed inset-0 -z-10 grid-bg"></div>
+  <div class="fixed -z-10 top-24 left-12 w-72 h-72 rounded-full bg-amber-300 blob"></div>
+  <div class="fixed -z-10 bottom-10 right-10 w-80 h-80 rounded-full bg-yellow-200 blob blob2"></div>
 
-  <!-- Top bar -->
-  <header class="sticky top-0 z-50 bg-black/40 backdrop-blur border-b border-white/5">
+  <!-- IMPORTANT:
+    Save your images like this in your project folder:
+      /assets/minora.jpeg   (your logo)
+      /assets/umich.webp    (University of Michigan logo)
+      /assets/fwx.jpg       (Futureworks logo)
+  -->
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 bg-black/35 backdrop-blur border-b border-white/5">
     <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="h-16 flex items-center justify-between">
-        <a href="#top" class="font-extrabold tracking-tight text-xl">
-          <span class="text-gold">Kiran</span><span class="text-gray-200">.KG</span>
+
+        <!-- Brand -->
+        <a href="#top" class="flex items-center gap-3">
+          <div class="h-10 w-10 rounded-xl overflow-hidden border border-white/10 shadow-glow">
+            <img src="assets/minora.jpeg" alt="Personal logo" class="h-full w-full object-cover">
+          </div>
+          <div class="leading-tight">
+            <div class="font-extrabold tracking-tight text-base sm:text-lg">
+              <span class="text-gold">Kiran Krishn</span> <span class="text-gray-200">Gunaseelan</span>
+            </div>
+            <div class="text-xs text-gray-400 -mt-0.5">BNSF | Tech • New Grad</div>
+          </div>
         </a>
 
+        <!-- Desktop nav -->
         <div class="hidden md:flex items-center gap-6 text-sm text-gray-300">
           <a class="hover:text-amber-300" href="#about">About</a>
           <a class="hover:text-amber-300" href="#bnsf">Why BNSF</a>
@@ -52,11 +126,34 @@
           <a class="hover:text-amber-300" href="#projects">Projects</a>
           <a class="hover:text-amber-300" href="#skills">Skills</a>
           <a class="hover:text-amber-300" href="#education">Education</a>
+          <a class="hover:text-amber-300" href="#more">More</a>
         </div>
 
+        <!-- Actions -->
         <div class="flex items-center gap-3">
-          <a class="text-gray-300 hover:text-amber-300 text-sm" href="https://linkedin.com/in/kiran-krishn" target="_blank" rel="noreferrer">LinkedIn</a>
+          <a class="hidden sm:inline text-gray-300 hover:text-amber-300 text-sm" href="https://linkedin.com/in/kiran-krishn" target="_blank" rel="noreferrer">LinkedIn</a>
           <a class="text-gray-300 hover:text-amber-300 text-sm" href="mailto:kirankrishn.g@gmail.com">Email</a>
+
+          <!-- Mobile button -->
+          <button id="menuBtn" class="md:hidden px-3 py-2 rounded-lg bg-white/5 border border-white/10 text-gray-200">
+            Menu
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile menu -->
+      <div id="mobileMenu" class="md:hidden hidden pb-4">
+        <div class="card rounded-2xl p-4">
+          <div class="grid grid-cols-2 gap-3 text-sm text-gray-200">
+            <a class="hover:text-amber-300" href="#about">About</a>
+            <a class="hover:text-amber-300" href="#bnsf">Why BNSF</a>
+            <a class="hover:text-amber-300" href="#experience">Experience</a>
+            <a class="hover:text-amber-300" href="#projects">Projects</a>
+            <a class="hover:text-amber-300" href="#skills">Skills</a>
+            <a class="hover:text-amber-300" href="#education">Education</a>
+            <a class="hover:text-amber-300" href="#more">More</a>
+            <a class="hover:text-amber-300" href="https://linkedin.com/in/kiran-krishn" target="_blank" rel="noreferrer">LinkedIn</a>
+          </div>
         </div>
       </div>
     </nav>
@@ -69,94 +166,178 @@
       <div class="grid lg:grid-cols-2 gap-10 items-start">
 
         <div>
-          <h1 class="text-4xl sm:text-5xl font-extrabold leading-tight">
-            <span class="text-gold">Kiran Krishn Gunaseelan</span>
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full logo-chip text-xs text-gray-200">
+            <span class="h-2 w-2 rounded-full bg-amber-300"></span>
+            Open to BNSF | Tech roles (AI • Data • Software • DevOps)
+          </div>
+
+          <h1 class="mt-5 text-4xl sm:text-5xl font-extrabold leading-tight">
+            <span class="text-gold">BNSF | Tech</span>
+            <span class="text-gray-100">Portfolio</span>
           </h1>
 
           <p class="mt-4 text-lg text-gray-200">
-            AI Engineer (New Grad) • Data Science • Data Engineering • MLOps/DevOps
+            Building scalable tech: data pipelines, ML/NLP, cloud, monitoring, and automation.
           </p>
 
           <p class="mt-5 text-gray-300 leading-relaxed max-w-xl">
-            I build reliable AI + data systems and turn real-world problems into scalable solutions.
-            Comfortable with Python/SQL, ML/NLP, data pipelines, cloud, and CI/CD.
+            I’m a New Grad tech candidate who likes solving real problems with reliable systems.
+            I combine <span class="text-gray-100 font-semibold">AI + Data Engineering + DevOps mindset</span>
+            to ship fast and keep it stable.
           </p>
 
-          <div class="mt-8 flex flex-wrap gap-3">
-            <a href="#bnsf" class="px-5 py-3 rounded-lg bg-amber-500 text-black font-semibold hover:bg-amber-400 transition">
+          <div class="mt-7 flex flex-wrap gap-3">
+            <a href="#bnsf" class="px-5 py-3 rounded-xl bg-amber-500 text-black font-semibold hover:bg-amber-400 transition">
               Why BNSF (Simple)
             </a>
-            <a href="#projects" class="px-5 py-3 rounded-lg bg-white/10 border border-white/10 text-white hover:bg-white/15 transition">
-              See Projects
+            <a href="#projects" class="px-5 py-3 rounded-xl bg-white/10 border border-white/10 text-white hover:bg-white/15 transition">
+              View Projects
+            </a>
+            <a href="mailto:kirankrishn.g@gmail.com" class="px-5 py-3 rounded-xl bg-white/5 border border-white/10 text-white hover:bg-white/10 transition">
+              Contact
             </a>
           </div>
 
-          <div class="mt-6 text-sm text-gray-400">
-            Dearborn, MI • (313) 645-1630 • kirankrishn.g@gmail.com
+          <div class="mt-6 flex flex-wrap gap-2 text-xs text-gray-200">
+            <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10">Dearborn, MI</span>
+            <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10">(313) 645-1630</span>
+            <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10">kirankrishn.g@gmail.com</span>
           </div>
         </div>
 
-        <!-- ABOUT (simple) -->
-        <div id="about" class="card rounded-2xl p-6 sm:p-8">
-          <h2 class="text-xl font-bold text-amber-300">About Myself (Simple)</h2>
-          <p class="mt-4 text-gray-200 leading-relaxed">
-            Hi, I’m Kiran. I’m an AI Engineer (New Grad) who also understands DevOps and Data Engineering.
-            I like building systems that are not only smart, but also stable and fast.
-            I’ve worked on automation, monitoring, and ML/NLP projects, and I enjoy solving problems that impact real users.
-          </p>
+        <!-- Profile Card -->
+        <div class="card rounded-3xl p-6 sm:p-8 shadow-glow">
+          <div class="flex items-center justify-between gap-4">
+            <div>
+              <h2 class="text-xl font-bold text-amber-300">Quick Profile</h2>
+              <p class="mt-1 text-gray-300 text-sm">Clean, measurable, production-ready work.</p>
+            </div>
+            <div class="h-12 w-12 rounded-2xl overflow-hidden border border-white/10">
+              <img src="assets/minora.jpeg" alt="Logo" class="h-full w-full object-cover">
+            </div>
+          </div>
 
           <div class="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-3 text-sm">
-            <div class="rounded-xl bg-white/5 border border-white/10 p-4">
+            <div class="rounded-2xl bg-white/5 border border-white/10 p-4">
               <div class="text-gray-400">Strength</div>
               <div class="text-gray-100 font-semibold">Problem solving</div>
             </div>
-            <div class="rounded-xl bg-white/5 border border-white/10 p-4">
+            <div class="rounded-2xl bg-white/5 border border-white/10 p-4">
               <div class="text-gray-400">Focus</div>
               <div class="text-gray-100 font-semibold">Reliable systems</div>
             </div>
-            <div class="rounded-xl bg-white/5 border border-white/10 p-4">
-              <div class="text-gray-400">Tools</div>
+            <div class="rounded-2xl bg-white/5 border border-white/10 p-4">
+              <div class="text-gray-400">Stack</div>
               <div class="text-gray-100 font-semibold">Python + Cloud</div>
             </div>
           </div>
+
+          <!-- Brand strip -->
+          <div class="mt-6 rounded-2xl bg-white/5 border border-white/10 p-4">
+            <div class="text-xs text-gray-400">Experience + Education</div>
+            <div class="mt-3 flex items-center gap-4">
+              <div class="flex items-center gap-2">
+                <div class="h-10 w-10 rounded-xl overflow-hidden border border-white/10">
+                  <img src="assets/fwx.jpg" alt="Futureworks logo" class="h-full w-full object-cover">
+                </div>
+                <div class="text-sm">
+                  <div class="text-gray-100 font-semibold">Futureworks</div>
+                  <div class="text-gray-400 text-xs">DevOps</div>
+                </div>
+              </div>
+
+              <div class="h-8 w-px bg-white/10"></div>
+
+              <div class="flex items-center gap-2">
+                <div class="h-10 w-10 rounded-xl overflow-hidden border border-white/10 bg-white/10">
+                  <img src="assets/umich.webp" alt="University of Michigan logo" class="h-full w-full object-cover">
+                </div>
+                <div class="text-sm">
+                  <div class="text-gray-100 font-semibold">University of Michigan</div>
+                  <div class="text-gray-400 text-xs">M.S. Data Science</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <p class="mt-5 text-xs text-gray-400 leading-relaxed">
+            Tip: Keep this page as your “one link” for recruiters — resume link + LinkedIn + projects.
+          </p>
         </div>
 
       </div>
     </section>
 
-    <!-- BNSF (simple + only BNSF) -->
-    <section id="bnsf" class="py-10 sm:py-14">
-      <div class="card rounded-2xl p-6 sm:p-10">
-        <h2 class="text-3xl font-extrabold"><span class="text-gold">Why BNSF</span></h2>
-
-        <p class="mt-4 text-gray-300 max-w-3xl">
-          I want BNSF because it’s a place where technology has real impact.
-          BNSF runs large operations every day, so good data and AI can improve safety, reliability, and efficiency.
+    <!-- ABOUT -->
+    <section id="about" class="py-10 sm:py-14">
+      <div class="card rounded-3xl p-6 sm:p-10">
+        <h2 class="text-3xl font-extrabold"><span class="text-gold">About</span></h2>
+        <p class="mt-4 text-gray-300 max-w-3xl leading-relaxed">
+          Hi, I’m Kiran. I’m a tech-focused New Grad who enjoys building systems that are
+          <span class="text-gray-100 font-semibold">fast, stable, and measurable</span>.
+          I’ve worked on automation, monitoring, and ML/NLP projects — and I like converting ideas into production-style solutions.
         </p>
 
         <div class="mt-8 grid md:grid-cols-3 gap-5">
-          <div class="rounded-xl bg-white/5 border border-white/10 p-5">
+          <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
+            <h3 class="font-bold text-amber-300">What I do</h3>
+            <ul class="mt-3 text-gray-200 text-sm space-y-2 list-disc pl-5">
+              <li>Data pipelines and automation</li>
+              <li>ML/NLP modeling + evaluation</li>
+              <li>Monitoring, reliability, CI/CD mindset</li>
+            </ul>
+          </div>
+          <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
+            <h3 class="font-bold text-amber-300">How I work</h3>
+            <ul class="mt-3 text-gray-200 text-sm space-y-2 list-disc pl-5">
+              <li>Simple, readable implementation</li>
+              <li>Metrics-first thinking</li>
+              <li>Ship → test → improve</li>
+            </ul>
+          </div>
+          <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
+            <h3 class="font-bold text-amber-300">What I want</h3>
+            <p class="mt-3 text-gray-200 text-sm leading-relaxed">
+              A BNSF | Tech role where I can build systems that improve operations and create real business impact.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY BNSF -->
+    <section id="bnsf" class="py-10 sm:py-14">
+      <div class="card rounded-3xl p-6 sm:p-10">
+        <h2 class="text-3xl font-extrabold"><span class="text-gold">Why BNSF</span></h2>
+
+        <p class="mt-4 text-gray-300 max-w-3xl">
+          I want BNSF because technology here impacts real-world operations at large scale.
+          Strong data systems and automation can improve safety, reliability, and efficiency every day.
+        </p>
+
+        <div class="mt-8 grid md:grid-cols-3 gap-5">
+          <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
             <h3 class="font-bold text-amber-300">Why I fit</h3>
             <ul class="mt-3 text-gray-200 text-sm space-y-2 list-disc pl-5">
-              <li>I build clean pipelines and automation.</li>
-              <li>I create ML/NLP models and evaluate them properly.</li>
-              <li>I care about reliability, monitoring, and quality.</li>
+              <li>Automation + pipelines + dashboards</li>
+              <li>ML/NLP projects with strong evaluation</li>
+              <li>Reliability and monitoring mindset</li>
             </ul>
           </div>
 
-          <div class="rounded-xl bg-white/5 border border-white/10 p-5">
-            <h3 class="font-bold text-amber-300">What I want to do</h3>
+          <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
+            <h3 class="font-bold text-amber-300">What I’ll deliver</h3>
             <ul class="mt-3 text-gray-200 text-sm space-y-2 list-disc pl-5">
-              <li>Use data to predict and prevent issues early.</li>
-              <li>Build scalable AI tools for teams to use daily.</li>
-              <li>Improve processes with automation and dashboards.</li>
+              <li>Scalable tools teams can use daily</li>
+              <li>Clear metrics and measurable impact</li>
+              <li>Faster & safer operational decisions</li>
             </ul>
           </div>
 
-          <div class="rounded-xl bg-white/5 border border-white/10 p-5">
+          <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
             <h3 class="font-bold text-amber-300">One-line answer</h3>
             <p class="mt-3 text-gray-200 text-sm leading-relaxed">
-              “I’m choosing BNSF because the work is real and large-scale, and I want to build AI systems that improve operations in a measurable way.”
+              “I’m choosing BNSF because the scale is real, and I want to build technology that improves operations in a measurable way.”
             </p>
           </div>
         </div>
@@ -168,14 +349,19 @@
       <h2 class="text-3xl font-extrabold mb-6"><span class="text-gold">Experience</span></h2>
 
       <div class="grid md:grid-cols-2 gap-6">
-        <div class="card rounded-2xl p-6">
-          <div class="flex items-start justify-between gap-4">
-            <div>
+
+        <div class="card rounded-3xl p-6">
+          <div class="flex items-start gap-4">
+            <div class="h-12 w-12 rounded-2xl overflow-hidden border border-white/10 bg-white/5">
+              <img src="assets/fwx.jpg" alt="Futureworks logo" class="h-full w-full object-cover">
+            </div>
+            <div class="flex-1">
               <h3 class="text-xl font-bold text-amber-300">DevOps</h3>
               <p class="text-gray-200 font-medium">Futureworks • India</p>
               <p class="text-gray-400 text-sm">Dec 2022 – Jul 2023</p>
             </div>
           </div>
+
           <ul class="mt-5 text-gray-200 text-sm space-y-2 list-disc pl-5">
             <li>Automated routine deployments and reduced release time by ~30%.</li>
             <li>Improved reliability by monitoring performance and resolving issues quickly.</li>
@@ -183,16 +369,25 @@
           </ul>
         </div>
 
-        <div class="card rounded-2xl p-6">
-          <h3 class="text-xl font-bold text-amber-300">Business & Data Analyst</h3>
-          <p class="text-gray-200 font-medium">Minora Groups • Singapore</p>
-          <p class="text-gray-400 text-sm">Oct 2021 – Nov 2022</p>
+        <div class="card rounded-3xl p-6">
+          <div class="flex items-start gap-4">
+            <div class="h-12 w-12 rounded-2xl overflow-hidden border border-white/10">
+              <img src="assets/minora.jpeg" alt="Minora logo" class="h-full w-full object-cover">
+            </div>
+            <div class="flex-1">
+              <h3 class="text-xl font-bold text-amber-300">Business & Data Analyst</h3>
+              <p class="text-gray-200 font-medium">Minora Groups • Singapore</p>
+              <p class="text-gray-400 text-sm">Oct 2021 – Nov 2022</p>
+            </div>
+          </div>
+
           <ul class="mt-5 text-gray-200 text-sm space-y-2 list-disc pl-5">
             <li>Launched an in-house clothing brand; achieved ~130% profit margin.</li>
             <li>Used sentiment analysis to improve product positioning and marketing.</li>
             <li>Streamlined delivery processes; reduced cycle time significantly.</li>
           </ul>
         </div>
+
       </div>
     </section>
 
@@ -200,24 +395,24 @@
     <section id="projects" class="py-10 sm:py-14">
       <h2 class="text-3xl font-extrabold mb-6"><span class="text-gold">Projects</span></h2>
 
-      <div class="space-y-6">
-        <div class="card rounded-2xl p-6">
+      <div class="grid lg:grid-cols-2 gap-6">
+        <div class="card rounded-3xl p-6">
           <h3 class="text-xl font-bold text-amber-300">AI-Powered Misinformation Detection</h3>
-          <p class="mt-2 text-gray-300 text-sm max-w-3xl">
+          <p class="mt-2 text-gray-300 text-sm leading-relaxed">
             Built NLP models (BERT, BiLSTM) to classify news as real/fake; achieved ~92% accuracy.
-            Designed preprocessing pipeline and a dashboard for stakeholders.
+            Designed preprocessing pipeline and a stakeholder-friendly dashboard.
           </p>
           <div class="mt-4 flex flex-wrap gap-2 text-xs text-gray-200">
             <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10">Python</span>
             <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10">NLP</span>
             <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10">BERT</span>
-            <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10">Streamlit/Dashboard</span>
+            <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10">Dashboard</span>
           </div>
         </div>
 
-        <div class="card rounded-2xl p-6">
+        <div class="card rounded-3xl p-6">
           <h3 class="text-xl font-bold text-amber-300">Sentiment Analysis on Product Reviews</h3>
-          <p class="mt-2 text-gray-300 text-sm max-w-3xl">
+          <p class="mt-2 text-gray-300 text-sm leading-relaxed">
             Trained models (LogReg, Random Forest, XGBoost) to predict sentiment; built a rating prediction system
             and deployed it on Streamlit for real-time scoring and visualization.
           </p>
@@ -225,6 +420,7 @@
             <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10">Scikit-learn</span>
             <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10">XGBoost</span>
             <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10">ML Pipelines</span>
+            <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10">Deployment</span>
           </div>
         </div>
       </div>
@@ -234,19 +430,40 @@
     <section id="skills" class="py-10 sm:py-14">
       <h2 class="text-3xl font-extrabold mb-6"><span class="text-gold">Skills</span></h2>
 
-      <div class="card rounded-2xl p-6">
+      <div class="card rounded-3xl p-6 sm:p-8">
         <div class="grid md:grid-cols-3 gap-6 text-sm">
           <div>
             <h3 class="font-bold text-amber-300">Languages</h3>
-            <p class="mt-2 text-gray-200">Python • SQL • R • Java • JavaScript</p>
+            <div class="mt-3 flex flex-wrap gap-2">
+              <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10">Python</span>
+              <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10">SQL</span>
+              <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10">R</span>
+              <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10">Java</span>
+              <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10">JavaScript</span>
+            </div>
           </div>
+
           <div>
-            <h3 class="font-bold text-amber-300">ML / AI</h3>
-            <p class="mt-2 text-gray-200">Scikit-learn • PyTorch • TensorFlow • XGBoost • Hugging Face • LangChain</p>
+            <h3 class="font-bold text-amber-300">AI / ML</h3>
+            <div class="mt-3 flex flex-wrap gap-2">
+              <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10">Scikit-learn</span>
+              <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10">PyTorch</span>
+              <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10">TensorFlow</span>
+              <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10">Hugging Face</span>
+              <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10">LangChain</span>
+            </div>
           </div>
+
           <div>
             <h3 class="font-bold text-amber-300">Data + Cloud</h3>
-            <p class="mt-2 text-gray-200">Spark • Kafka • Airflow • Terraform • Ansible • CI/CD • AWS • GCP</p>
+            <div class="mt-3 flex flex-wrap gap-2">
+              <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10">Spark</span>
+              <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10">Kafka</span>
+              <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10">Airflow</span>
+              <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10">CI/CD</span>
+              <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10">AWS</span>
+              <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10">GCP</span>
+            </div>
           </div>
         </div>
       </div>
@@ -256,26 +473,91 @@
     <section id="education" class="py-10 sm:py-14">
       <h2 class="text-3xl font-extrabold mb-6"><span class="text-gold">Education</span></h2>
 
-      <div class="card rounded-2xl p-6">
-        <h3 class="text-xl font-bold text-amber-300">University of Michigan – Dearborn</h3>
-        <p class="text-gray-200 mt-1">M.S. in Data Science • Expected Dec 2025</p>
-        <p class="text-gray-300 mt-3 text-sm">GPA: 3.83/4.0</p>
+      <div class="card rounded-3xl p-6 sm:p-8">
+        <div class="flex items-start gap-4">
+          <div class="h-14 w-14 rounded-2xl overflow-hidden border border-white/10 bg-white/10">
+            <img src="assets/umich.webp" alt="University of Michigan logo" class="h-full w-full object-cover">
+          </div>
+          <div>
+            <h3 class="text-xl font-bold text-amber-300">University of Michigan – Dearborn</h3>
+            <p class="text-gray-200 mt-1">M.S. in Data Science • Expected Dec 2025</p>
+            <p class="text-gray-300 mt-2 text-sm">GPA: 3.83/4.0</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MORE -->
+    <section id="more" class="py-10 sm:py-14">
+      <h2 class="text-3xl font-extrabold mb-6"><span class="text-gold">More</span></h2>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="card rounded-3xl p-6">
+          <h3 class="font-bold text-amber-300">Highlights</h3>
+          <ul class="mt-4 text-gray-200 text-sm space-y-2 list-disc pl-5">
+            <li>Interested in large-scale ops + reliability</li>
+            <li>Strong in automation + analytics</li>
+            <li>Projects built end-to-end (data → model → UI)</li>
+          </ul>
+        </div>
+
+        <div class="card rounded-3xl p-6">
+          <h3 class="font-bold text-amber-300">Roles I’m targeting</h3>
+          <ul class="mt-4 text-gray-200 text-sm space-y-2 list-disc pl-5">
+            <li>Software / Data Engineer (New Grad)</li>
+            <li>AI / ML Engineer (New Grad)</li>
+            <li>DevOps / Platform / MLOps</li>
+          </ul>
+        </div>
+
+        <div class="card rounded-3xl p-6">
+          <h3 class="font-bold text-amber-300">Quick Links</h3>
+          <div class="mt-4 space-y-3 text-sm">
+            <a class="block px-4 py-3 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition"
+               href="mailto:kirankrishn.g@gmail.com">Email</a>
+            <a class="block px-4 py-3 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition"
+               href="https://linkedin.com/in/kiran-krishn" target="_blank" rel="noreferrer">LinkedIn</a>
+            <a class="block px-4 py-3 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition"
+               href="#projects">Projects</a>
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- FOOTER -->
     <footer class="py-12 border-t border-white/5 text-center text-sm text-gray-400">
-      <p class="text-gray-200 font-semibold">Let’s connect</p>
-      <p class="mt-2">
+      <div class="flex items-center justify-center gap-3">
+        <div class="h-9 w-9 rounded-xl overflow-hidden border border-white/10">
+          <img src="assets/minora.jpeg" alt="Logo" class="h-full w-full object-cover">
+        </div>
+        <p class="text-gray-200 font-semibold">Let’s connect</p>
+      </div>
+
+      <p class="mt-3">
         <a class="hover:text-amber-300" href="mailto:kirankrishn.g@gmail.com">kirankrishn.g@gmail.com</a>
         <span class="mx-2">•</span>
         <a class="hover:text-amber-300" href="https://linkedin.com/in/kiran-krishn" target="_blank" rel="noreferrer">linkedin.com/in/kiran-krishn</a>
         <span class="mx-2">•</span>
         <a class="hover:text-amber-300" href="tel:+13136451630">(313) 645-1630</a>
       </p>
+
       <p class="mt-6">&copy; 2026 Kiran Krishn Gunaseelan</p>
     </footer>
 
   </main>
+
+  <script>
+    // Mobile menu toggle
+    const btn = document.getElementById("menuBtn");
+    const menu = document.getElementById("mobileMenu");
+    btn?.addEventListener("click", () => {
+      menu.classList.toggle("hidden");
+    });
+
+    // Auto close mobile menu when clicking a link
+    menu?.querySelectorAll("a").forEach(a => {
+      a.addEventListener("click", () => menu.classList.add("hidden"));
+    });
+  </script>
 </body>
 </html>
